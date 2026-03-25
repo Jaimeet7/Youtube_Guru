@@ -1,6 +1,17 @@
 import streamlit as st
 from src.generator import answer
 
+def format_time(seconds):
+    seconds = int(seconds)
+
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    secs = seconds % 60
+
+    if hours > 0:
+        return f"{hours:02d}:{minutes:02d}:{secs:02d}"
+    else:
+        return f"{minutes:02d}:{secs:02d}"
 
 
 st.title("Youtube Guru 🧑‍🏫")
@@ -26,8 +37,7 @@ if query := st.chat_input("Ask a question..."):
             st.markdown("**📍 Sources:**")
             for chunk in chunks:
                 start = chunk.metadata.get("start", 0)
-                mins = int(start // 60)
-                secs = int(start % 60)
-                st.markdown(f"⏱️ `{mins:02d}:{secs:02d}` — {chunk.page_content[:100]}...")
+                formatted_time = format_time(start)
+                st.markdown(f"⏱️ `{formatted_time}` — {chunk.page_content[:100]}...")
 
     st.session_state.messages.append({"role": "assistant", "content": response})

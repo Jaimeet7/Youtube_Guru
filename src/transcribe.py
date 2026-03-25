@@ -1,14 +1,8 @@
 from youtube_transcript_api import YouTubeTranscriptApi
-from youtube_transcript_api.proxies import WebshareProxyConfig
 from dotenv import load_dotenv
 import os
 load_dotenv()
 
-proxy_uname = os.getenv('PROXY_USERNAME')
-proxy_pass = os.getenv('PROXY_PASSWORD')
-
-# f = open("/Users/jaimeet/Documents/LivoAI project/what_is_neural_network.txt",'r')
-# text = f.read()
 
 def get_video_id(url):
     if "v=" in url:
@@ -21,6 +15,14 @@ def get_video_id(url):
 
 
 def get_content(video_id,fallback_file=None):
+    try:
+        api = YouTubeTranscriptApi()
+        transcripts = api.fetch(video_id,languages=['en','hi'])
+        doc = [(line.text,line.duration,line.start) for line in transcripts]
+        return doc
+    except Exception as e:
+        print(f"API failed: {e}")
+    print("Using fallback_file...")    
     if fallback_file:
         with open(fallback_file,'r') as f:
             lines = f.readlines()
@@ -34,7 +36,7 @@ def get_content(video_id,fallback_file=None):
                 continue
             if i+1<len(lines):
                 next_line = lines[i+1].strip()
-                if ':' in next_line and len(lines)<5: #MM:SS
+                if ':' in next_line:
                     minutes,seconds = next_line.split(":")
                     start = int(minutes) * 60 + int(seconds)
                     doc.append((line,0,start))
@@ -42,7 +44,5 @@ def get_content(video_id,fallback_file=None):
                     continue
             doc.append((line,0,0))
             i+=1
-    api = YouTubeTranscriptApi()
-    transcripts = api.fetch(video_id,languages=['en','hi'])
-    doc = [(line.text,line.duration,line.start) for line in transcripts]
-    return doc
+        return doc
+    return ValueError("No content available from API or fallback")
