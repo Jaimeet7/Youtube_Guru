@@ -47,5 +47,5 @@ while True:
     print(f"Answer:{response}")
     print("Sources:")
     for chunk in chunks:
-        start_time = format_time(chunk.metadata)
+        start_time = format_time(chunk.metadata.get('start',0))
         print(f"-{chunk.page_content}...| timestamp:{start_time}")
