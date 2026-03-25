@@ -24,9 +24,9 @@ def get_content(video_id,fallback_file=None):
         print(f"API failed: {e}")
     print("Using fallback_file...")    
     if fallback_file:
+        video_name = fallback_file.split("/")[-1].replace(".txt","")
         with open(fallback_file,'r') as f:
             lines = f.readlines()
-
         doc = []
         i = 0
         while i<len(lines):
@@ -39,10 +39,10 @@ def get_content(video_id,fallback_file=None):
                 if ':' in next_line:
                     minutes,seconds = next_line.split(":")
                     start = int(minutes) * 60 + int(seconds)
-                    doc.append((line,0,start))
+                    doc.append((line,0,start,video_name))
                     i+=2
                     continue
-            doc.append((line,0,0))
+            doc.append((line,0,0,video_name))
             i+=1
         return doc
     return ValueError("No content available from API or fallback")

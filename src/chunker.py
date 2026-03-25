@@ -5,13 +5,17 @@ import tiktoken
 def prepare_transcript(doc):
     segments = []
     metadata = []
-    buffer = []
 
-    for text,_,start in doc:
+    for item in doc:
+        if len(item) == 4:
+            text, _, start, source = item
+        else:
+            text, _, start = item
+            source = "unknown"
         segments.append(text)
-        metadata.append({'start':start})
+        metadata.append({"start": start, "source": source})
 
-    return segments,metadata
+    return segments, metadata
 
 def chunk_content(segments,metadata):
 

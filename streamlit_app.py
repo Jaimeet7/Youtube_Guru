@@ -37,7 +37,8 @@ if query := st.chat_input("Ask a question..."):
             st.markdown("**📍 Sources:**")
             for chunk in chunks:
                 start = chunk.metadata.get("start", 0)
+                source = chunk.metadata.get("source","unknown")
                 formatted_time = format_time(start)
-                st.markdown(f"⏱️ `{formatted_time}` — {chunk.page_content[:100]}...")
+                st.markdown(f"⏱️ `{formatted_time}`| {source} — {chunk.page_content[:100]}...")
 
     st.session_state.messages.append({"role": "assistant", "content": response})
