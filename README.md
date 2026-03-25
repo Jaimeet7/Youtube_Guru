@@ -30,9 +30,9 @@ project/
 **Question:"What is a neural network and how is it inspired by the human brain?"**
 **Answer:What is a neural network? The context states, "But what I want to do here is show you what a neural network actually is," but it does not go on to explain what a neural network actually is. Therefore, I don't have enough information to answer this part of the question.
 
-How is it inspired by the human brain? The context explicitly states that "neural networks are inspired by the brain." It further clarifies that this inspiration means they are "loosely analogous to how in biological networks of neurons." This means that the way neural networks are designed and function is meant to be similar, in a general sense, to how the networks of neurons (brain cells) in living organisms work.
+How is it inspired by the human brain? The context explicitly states that "neural networks are inspired by the brain." It further clarifies that this inspiration means they are "loosely analogous to how in biological networks of neurons." This means that the way neural networks are designed and function is meant to be similar, in a general sense, to how the networks of neurons (brain cells) in living organisms work.**
 
-📍 Sources:
+**Source & Timestamp:📍 Sources:
 
 ⏱️ 02:48| what_is_neural_network — As the name suggests neural networks are inspired by the brain, but let's break that down....
 
@@ -41,18 +41,12 @@ How is it inspired by the human brain? The context explicitly states that "neura
 ⏱️ 04:53| what_is_neural_network — It's meant to be loosely analogous to how in biological networks of neurons,...
 
 ⏱️ 01:18| what_is_neural_network — But what I want to do here is show you what a neural network actually is,...**  
-**Source & Timestamp:**  
+**  
 
 ### Q2:
 **Question:"What is the attention mechanism in transformers?"**  
-**Answer:**  
-**Source & Timestamp:**  
-
-### Q3:
-**Question:"What is backpropagation and how does it work?"**  
-**Answer:The attention mechanism in transformers is responsible for figuring out which parts of the input are most relevant. It's a key component of the transformer architecture, allowing the model to focus on specific aspects of the data. The attention block is where this process takes place, enabling the model to weigh the importance of different inputs. This mechanism helps the transformer to efficiently process and understand complex data.
-
-📍 Sources:
+**Answer:The attention mechanism in transformers is responsible for figuring out which parts of the input are most relevant. It's a key component of the transformer architecture, allowing the model to focus on specific aspects of the data. The attention block is where this process takes place, enabling the model to weigh the importance of different inputs. This mechanism helps the transformer to efficiently process and understand complex data.**  
+**Source & Timestamp:⏱️ 
 
 ⏱️ 13:12| all_about_ml_and_dl — what is transformer, what is attention...
 
@@ -60,8 +54,23 @@ How is it inspired by the human brain? The context explicitly states that "neura
 
 ⏱️ 00:39| transformers — visually-driven explanation for what actually happens inside a transformer....
 
-⏱️ 04:15| transformers — The attention block is what's responsible for figuring out which...**  
-**Source & Timestamp:**  
+⏱️ 04:15| transformers — The attention block is what's responsible for figuring out which...**
+**  
+
+### Q3:
+**Question:"What is backpropagation and how does it work?"**  
+**Answer:Backpropagation is a method used to train neural networks, specifically referring to the backward propagation of errors. It's a key component in training feed forward neural networks, allowing them to learn from their mistakes. Unfortunately, the details of how it works are not provided in this context, as it was discussed in previous chapters. We would need to refer to those previous chapters for a more detailed explanation of the backpropagation process.**
+
+ 
+**Source & Timestamp:📍 Sources:
+
+⏱️ 09:22| transformers — it's called backpropagation, we talked about it in previous chapters,...
+
+⏱️ 12:08| all_about_ml_and_dl — we have feed forward neural networks...
+
+⏱️ 13:43| all_about_ml_and_dl — how your neural network is trained...
+
+⏱️ 12:10| all_about_ml_and_dl — we have backward propagation methods...**
 
 ### Q4:
 **Question:"What is deep learning and how is it different from machine learning?"**  
@@ -95,9 +104,19 @@ How is it inspired by the human brain? The context explicitly states that "neura
 
 ## Methodology
 - **How questions were selected:**
+** Questions were designed to simulate a real user interaction, which focused on conceptual understanding. This ensured the coverage of a wide range of domains. **
 - **How they were pulled from material:**
+** Questions were answered using a retrieval-based approach. Relevant transcript chunks were extracted using semantic similarity search over vector embeddings generated from the video transcripts.**
 - **What they are testing:**
+** 	•	The effectiveness of semantic retrieval
+	•	The model’s ability to generate context aware responses
+    •	The system’s handling of varied query types (generic, specific, and reference-based)
+	•	The accuracy of source attribution (timestamps and transcript alignment)**
 - **What a wrong retrieval would look like:**
+** 	•	Irrelevant transcript chunks being selected 
+	•	Missing context required to answer the question
+    •	Redundant or repetitive chunks 
+    •	Incorrect or misleading timestamps **
 
 ## How to Run
 ```bash
