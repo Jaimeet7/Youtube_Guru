@@ -74,7 +74,7 @@ How is it inspired by the human brain? The context explicitly states that "neura
 
 ### Q4:
 **Question:"What is deep learning and how is it different from machine learning?"**  
-**Answer:Deep learning is a class of models that is a subset of machine learning. It is mentioned alongside AI, indicating a relationship between the three concepts. Unfortunately, the provided context does not explicitly explain how deep learning differs from machine learning, only that deep learning is a specific type of model. I don't have enough information to fully elaborate on the differences.
+**Answer:Deep learning is a class of models that is a subset of machine learning. It is mentioned alongside AI, indicating a relationship between the three concepts. Unfortunately, the provided context does not explicitly explain how deep learning differs from machine learning, only that deep learning is a specific type of model. I don't have enough information to fully elaborate on the differences.**
 
 📍 Sources:
 
@@ -89,7 +89,7 @@ How is it inspired by the human brain? The context explicitly states that "neura
 
 ### Q5:
 **Question:"What are the layers in a neural network and what do they do?"**  
-**Answer:A neural network consists of multiple layers, but the context doesn't specify the exact functions of each layer. However, it does mention connections between one layer and a particular neuron in the next layer, implying that layers are connected in a sequential manner. The context also hints that the speaker is about to explain what a neural network is, but doesn't provide a clear explanation of the layers. I don't have enough information to provide a detailed explanation of the layers and their functions.
+**Answer:A neural network consists of multiple layers, but the context doesn't specify the exact functions of each layer. However, it does mention connections between one layer and a particular neuron in the next layer, implying that layers are connected in a sequential manner. The context also hints that the speaker is about to explain what a neural network is, but doesn't provide a clear explanation of the layers. I don't have enough information to provide a detailed explanation of the layers and their functions.**
 
 📍 Sources:
 
