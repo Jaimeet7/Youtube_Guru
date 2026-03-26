@@ -19,7 +19,7 @@ llm = ChatGroq(
 
 def answer(query):
     db = load_db()
-    chunks = db.similarity_search(query,top_k=8)
+    chunks = db.similarity_search(query,top_k=6)
 
     context = "\n\n".join(chunk.page_content for chunk in chunks)
 

@@ -116,6 +116,10 @@ How is it inspired by the human brain? The context explicitly states that "neura
     •	Redundant or repetitive chunks 
     •	Incorrect or misleading timestamps **
 
+## Future Improvements
+**  - Dynamic URL input — allow users to paste any YouTube URL
+    - Rotating residential proxies to handle YouTube IP restrictions at scale**
+
 ## How to Run
 ```bash
 pip install -r requirements.txt

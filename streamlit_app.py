@@ -14,7 +14,7 @@ def format_time(seconds):
         return f"{minutes:02d}:{secs:02d}"
 
 
-st.title("Youtube Guru 🧑‍🏫")
+st.title("Youtube Guru")
 st.markdown("Ask anything about neural networks, transformers, and deep learning!")
 
 if "messages" not in st.session_state:
@@ -34,11 +34,11 @@ if query := st.chat_input("Ask a question..."):
             response, chunks = answer(query)
             st.markdown(response)
             st.markdown("---")
-            st.markdown("**📍 Sources:**")
+            st.markdown("**Sources:**")
             for chunk in chunks:
                 start = chunk.metadata.get("start", 0)
                 source = chunk.metadata.get("source","unknown")
                 formatted_time = format_time(start)
-                st.markdown(f"⏱️ `{formatted_time}`| {source} — {chunk.page_content[:100]}...")
+                st.markdown(f"`{formatted_time}`| {source} — {chunk.page_content[:100]}...")
 
     st.session_state.messages.append({"role": "assistant", "content": response})
