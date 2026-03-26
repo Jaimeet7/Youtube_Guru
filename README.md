@@ -24,13 +24,30 @@ project/
 └── transcripts/
 ```
 
+## Project Flow
+
+### 1. Transcript Scraping (`transcribe.py`)
+**Video URLs are passed to `youtube-transcript-api` which fetches the transcript for each video as a list of snippets, each containing the text, duration, and start timestamp. If YouTube blocks the IP, a fallback txt file is used instead.**
+
+### 2. Preprocessing (`chunker.py`)
+**Each transcript snippet is paired with its timestamp and source video name. These are then passed to LangChain's `RecursiveCharacterTextSplitter` which merges snippets into chunks of ~300 tokens with 60 token overlap. This ensures each chunk is large enough to carry meaning but small enough for precise retrieval.**
+
+### 3. Embedding & Storage (`embedder.py`)
+**Each chunk is embedded using HuggingFace's `all-MiniLM-L6-v2` model, which converts text into a 384-dimensional vector. These vectors are stored in a FAISS index along with the original text and metadata (timestamp + source video). The index is persisted to disk so it only needs to be built once.**
+
+### 4. Retrieval & Generation (`generator.py`)
+**When a user asks a question, it is embedded using the same model and a similarity search is run against the FAISS index. The top 6 most relevant chunks are retrieved and passed as context to the LLM, which generates a concise, grounded answer.**
+
+### 5. Streamlit UI (`app.py`)
+**The app provides a chat interface where users can ask questions about the video content. Each answer is accompanied by clickable source citations with timestamps that link directly to the relevant moment in the YouTube video.**
+
 ## Golden Dataset — 5 QA Pairs
 
 ### Q1: 
 **Question:"What is a neural network and how is it inspired by the human brain?"**
-**Answer:What is a neural network? The context states, "But what I want to do here is show you what a neural network actually is," but it does not go on to explain what a neural network actually is. Therefore, I don't have enough information to answer this part of the question.
+**Answer:What is a neural network? The context states, "But what I want to do here is show you what a neural network actually is," but it does not go on to explain what a neural network actually is. Therefore, I don't have enough information to answer this part of the question.**
 
-How is it inspired by the human brain? The context explicitly states that "neural networks are inspired by the brain." It further clarifies that this inspiration means they are "loosely analogous to how in biological networks of neurons." This means that the way neural networks are designed and function is meant to be similar, in a general sense, to how the networks of neurons (brain cells) in living organisms work.**
+**How is it inspired by the human brain? The context explicitly states that "neural networks are inspired by the brain." It further clarifies that this inspiration means they are "loosely analogous to how in biological networks of neurons." This means that the way neural networks are designed and function is meant to be similar, in a general sense, to how the networks of neurons (brain cells) in living organisms work.**
 
 **Source & Timestamp:📍 Sources:
 
