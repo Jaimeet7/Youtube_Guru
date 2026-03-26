@@ -12,3 +12,4 @@ streamlit==1.55.0
 python-dotenv==1.2.2
 google-ai-generativelanguage==0.10.0
 langchain-groq
+langchain-openai

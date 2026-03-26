@@ -1,4 +1,6 @@
 # from langchain_google_genai import ChatGoogleGenerativeAI
+# from langchain_openai import ChatOpenAI
+# from langchain_ollama import OllamaLLM
 from langchain_groq import ChatGroq
 from src.embedder import load_db
 from dotenv import load_dotenv
@@ -8,20 +10,22 @@ load_dotenv()
 api_key = os.getenv('GROQ_API_KEY')
 
 # llm = ChatGoogleGenerativeAI(
-#     model='gemini-2.5-flash',
+#     model='gemini-1.5-flash',
 #     google_api_key=api_key,
 #     temperature=0
 #     )
 llm = ChatGroq(
     model="llama-3.3-70b-versatile",
-    api_key=api_key
+    groq_api_key=api_key
 )
+
+# llm = ChatOpenAI(model="gpt-4o-mini",api_key=api_key)
 
 def answer(query):
     db = load_db()
     chunks = db.similarity_search(query,top_k=6)
 
-    context = "\n\n".join(chunk.page_content for chunk in chunks)
+    context = "\n\n".join(chunk.page_content[:300] for chunk in chunks)
 
     prompt = f"""
     Answer the question based on the context below
