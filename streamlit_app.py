@@ -41,6 +41,6 @@ if query := st.chat_input("Ask a question..."):
                 source = chunk.metadata.get("source","unknown")
                 formatted_time = format_time(start)
                 timestamp_url = f"https://www.youtube.com/watch?v={video_id}&t={int(start)}s"
-                st.markdown(f"`{formatted_time}`| {source} — {chunk.page_content[:100]}...")
+                st.markdown(f"`{formatted_time}`|{timestamp_url}| {source} — {chunk.page_content[:100]}...")
 
     st.session_state.messages.append({"role": "assistant", "content": response})
