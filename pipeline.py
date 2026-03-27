@@ -5,25 +5,11 @@ import time
 import random
 
 urls = [
-    (""
-    "", "transcripts/what_is_neural_network.txt"),
+    ("https://www.youtube.com/watch?v=aircAruvnKk", "transcripts/what_is_neural_network.txt"),
     ("https://www.youtube.com/watch?v=wjZofJX0v4M", "transcripts/transformers.txt"),
     ("https://www.youtube.com/watch?v=fHF22Wxuyw4", "transcripts/what_is_deep_learning.txt"),
     ("https://www.youtube.com/watch?v=C6YtPJxNULA", "transcripts/all_about_ml_and_dl.txt")
 ]
-
-def format_time(seconds):
-    seconds = int(seconds)
-
-    hours = seconds // 3600
-    minutes = (seconds % 3600) // 60
-    secs = seconds % 60
-
-    if hours > 0:
-        return f"{hours:02d}:{minutes:02d}:{secs:02d}"
-    else:
-        return f"{minutes:02d}:{secs:02d}"
-
 
 def main():
     all_chunks = []

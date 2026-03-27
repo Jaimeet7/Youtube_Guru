@@ -22,8 +22,8 @@ def chunk_content(segments,metadata):
     encoder = tiktoken.get_encoding('cl100k_base')
 
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=300,
-        chunk_overlap=60,
+        chunk_size=500,
+        chunk_overlap=100,
         length_function=lambda text: len(encoder.encode(text)) # measuring tool used to decide when to stop if size > chunk_size then cut
         )
     

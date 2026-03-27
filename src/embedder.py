@@ -4,8 +4,6 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-api_key = os.getenv('GOOGLE_API_KEY')
-
 embedding_model = HuggingFaceEmbeddings(model_name='all-MiniLM-L6-v2')
 
 def create_embeddings(chunks):

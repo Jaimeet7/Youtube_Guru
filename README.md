@@ -1,4 +1,4 @@
-# YouTube Guru — RAG QA Bot
+# YouTube Guru — RAG QA Bot | Live: 
 
 ## Project Overview
 A RAG-based QA bot built on transcripts from 4 YouTube videos on neural networks and deep learning. Uses FAISS for vector storage, HuggingFace embeddings, and Gemini 2.0 Flash for generation.
