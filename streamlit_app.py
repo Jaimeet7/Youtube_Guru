@@ -1,6 +1,13 @@
 import streamlit as st
 from src.generator import answer
 
+video_urls = {
+    "what_is_neural_network": "aircAruvnKk",
+    "transformers": "wjZofJX0v4M",
+    "what_is_deep_learning": "fHF22Wxuyw4",
+    "all_about_ml_and_dl": "C6YtPJxNULA"
+}
+
 def format_time(seconds):
     seconds = int(seconds)
 
@@ -41,11 +48,8 @@ if query := st.chat_input("Ask a question..."):
                     start = chunk.metadata.get("start", 0)
                     source = chunk.metadata.get("source", "unknown")
                     formatted_time = format_time(start)
-                    if "v=" in source:
-                        video_id = source.split("v=")[-1]
-                    else:
-                        video_id = source
-                    timestamp_url = f"https://www.youtube.com/watch?v={video_id}&t={int(start)}s"
+                    video_id = video_urls.get(source,"unknown")
+                    timestamp_url = f"https://youtu.be/{video_id}?t={int(start)}"
                     st.markdown(
                         f"[{formatted_time}]({timestamp_url}) — {chunk.page_content[:100]}..."
                     )

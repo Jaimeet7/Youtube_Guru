@@ -5,7 +5,8 @@ import time
 import random
 
 urls = [
-    ("https://www.youtube.com/watch?v=aircAruvnKk", "transcripts/what_is_neural_network.txt"),
+    (""
+    "", "transcripts/what_is_neural_network.txt"),
     ("https://www.youtube.com/watch?v=wjZofJX0v4M", "transcripts/transformers.txt"),
     ("https://www.youtube.com/watch?v=fHF22Wxuyw4", "transcripts/what_is_deep_learning.txt"),
     ("https://www.youtube.com/watch?v=C6YtPJxNULA", "transcripts/all_about_ml_and_dl.txt")

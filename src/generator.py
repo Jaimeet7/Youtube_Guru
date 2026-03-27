@@ -1,25 +1,21 @@
 # from langchain_google_genai import ChatGoogleGenerativeAI
 # from langchain_openai import ChatOpenAI
-# from langchain_ollama import OllamaLLM
 from langchain_groq import ChatGroq
 from src.embedder import load_db
 from dotenv import load_dotenv
+from itertools import cycle
 import os
 load_dotenv()
 
-api_key = os.getenv('GROQ_API_KEY')
+api_keys = [
+    os.getenv('GROQ_API_KEY_1'),
+    os.getenv('GROQ_API_KEY_2'),
+    os.getenv('GROQ_API_KEY_3'),
+    os.getenv('GROQ_API_KEY_4')
+    ]
 
-# llm = ChatGoogleGenerativeAI(
-#     model='gemini-1.5-flash',
-#     google_api_key=api_key,
-#     temperature=0
-#     )
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    groq_api_key=api_key
-)
+key_cycle = cycle(api_keys)
 
-# llm = ChatOpenAI(model="gpt-4o-mini",api_key=api_key)
 
 def answer(query):
     db = load_db()
@@ -40,5 +36,22 @@ def answer(query):
 
     Answer:
     """
-    response = llm.invoke(prompt)
-    return response.content,chunks
+    for _ in range(len(api_keys)):
+        try:
+            llm = ChatGroq(
+                model="llama-3.3-70b-versatile",
+                groq_api_key=next(key_cycle)
+            )
+            # llm = ChatGoogleGenerativeAI(
+#                       model='gemini-2.5-flash',
+#                       google_api_key=api_key,
+#                       temperature=0
+#           )
+            response = llm.invoke(prompt)
+            return response.content,chunks
+        except Exception as e:
+            if "rate limit" in str(e).lower():
+                continue
+            else:
+                raise e
+    raise Exception("all API keys exhausted")
