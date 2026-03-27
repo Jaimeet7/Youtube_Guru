@@ -1,5 +1,3 @@
-# from langchain_google_genai import ChatGoogleGenerativeAI
-# from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 from src.embedder import load_db
 from dotenv import load_dotenv
@@ -42,11 +40,6 @@ def answer(query):
                 model="llama-3.3-70b-versatile",
                 groq_api_key=next(key_cycle)
             )
-            # llm = ChatGoogleGenerativeAI(
-#                       model='gemini-2.5-flash',
-#                       google_api_key=api_key,
-#                       temperature=0
-#           )
             response = llm.invoke(prompt)
             return response.content,chunks
         except Exception as e:
